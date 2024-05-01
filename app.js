@@ -1,20 +1,19 @@
 const form = document.querySelector('form');
 const tweetsContainer = document.querySelector('h2 ~ ul');
 let lis;
-let lisLength;
+let lisLengthPlusOne;
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     let name = document.querySelector('#name');
     let tweet = document.querySelector('#tweet');
-    let a = 0;
     lis = document.querySelectorAll('li');
-    lisLength = lis.length + 1;
+    lisLengthPlusOne = lis.length + 1;
     const hr = document.createElement('hr');
     const br = document.createElement('br');
 
-    if (lisLength !== 1) {
+    if (lisLengthPlusOne !== 1) {
         tweetsContainer.appendChild(hr);
         tweetsContainer.appendChild(br);
     }
@@ -27,12 +26,21 @@ form.addEventListener('submit', (event) => {
     newTweet.appendChild(deleteButton);
 
     deleteButton.addEventListener('click', (e) => {
-        console.log('delete押したときのlisLength', lisLength);
+        lis = document.querySelectorAll('li');
+        const targetLi = e.target.closest('li'); // 親のli要素を取得
+
+        if (targetLi === lis[0] && lis[1]) {
+            // lis[1]のhrとbrを消したい
+            const hrZero = lis[1].previousElementSibling.previousElementSibling;
+            const brZero = lis[1].previousElementSibling;
+            hrZero.remove();
+            brZero.remove();
+
+            // lis[0]自体を消したい
+            targetLi.remove();
+        }
     });
-    console.log('外からのlisLength', lisLength);
 
     name.value = "";
     tweet.value = "";
 });
-
-
