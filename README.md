@@ -1,0 +1,1 @@
+<img src='./Images/自作電卓.png' width='40%' height='40%'>
