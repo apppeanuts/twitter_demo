@@ -36,7 +36,7 @@ form.addEventListener('submit', (event) => {
             brZero.remove();
             targetLi.remove();
 
-            // 削除したliが先頭以外だった場合（＝lis要素が2個以上ある状態）
+        // 削除したliが先頭以外だった場合（＝lis要素が2個以上ある状態）
         } else if (targetLi !== lis[0]) {
             const hrZero = targetLi.previousElementSibling.previousElementSibling;
             const brZero = targetLi.previousElementSibling;
@@ -44,7 +44,7 @@ form.addEventListener('submit', (event) => {
             brZero.remove();
             targetLi.remove();
 
-            // lis要素が1個しか無い状態で、かつ削除したliが先頭だった場合
+        // lis要素が1個しか無い状態で、かつ削除したliが先頭だった場合
         } else {
             targetLi.remove();
         }
