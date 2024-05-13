@@ -38,6 +38,7 @@ form.addEventListener('submit', (event) => {
 
             // lis[0]自体を消したい
             targetLi.remove();
+
         } else if (lis.length !== 1) {
             const hrZero = targetLi.previousElementSibling.previousElementSibling;
             const brZero = targetLi.previousElementSibling;
