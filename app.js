@@ -20,7 +20,7 @@ form.addEventListener('submit', (e) => {
     }
 
     const newTweet = document.createElement('li');
-    newTweet.innerHTML = `<b>${name.value}</b>: <span>${tweet.value}<span> `;
+    newTweet.innerHTML = `<b>${name.value}</b>: <span>${tweet.value}</span> `;
     tweetsContainer.appendChild(newTweet);
 
     /* 削除 */
