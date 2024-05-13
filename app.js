@@ -3,8 +3,9 @@ const tweetsContainer = document.querySelector('h2 ~ ul');
 let lis;
 let lisLengthPlusOne;
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+form.addEventListener('submit', (e) => {
+    /* 新規投稿 */
+    e.preventDefault();
 
     let name = document.querySelector('#name');
     let tweet = document.querySelector('#tweet');
@@ -12,14 +13,17 @@ form.addEventListener('submit', (event) => {
     lisLengthPlusOne = lis.length + 1;
     const hr = document.createElement('hr');
     const br = document.createElement('br');
+
     if (lisLengthPlusOne !== 1) {
         tweetsContainer.appendChild(hr);
         tweetsContainer.appendChild(br);
     }
+
     const newTweet = document.createElement('li');
-    newTweet.innerHTML = `<b>${name.value}</b>: ${tweet.value} `;
+    newTweet.innerHTML = `<b>${name.value}</b>: <span>${tweet.value}<span> `;
     tweetsContainer.appendChild(newTweet);
 
+    /* 削除 */
     const deleteButton = document.createElement('button');
     deleteButton.textContent = '削除';
     newTweet.appendChild(deleteButton);
@@ -49,6 +53,31 @@ form.addEventListener('submit', (event) => {
             targetLi.remove();
         }
     });
+
+    /* 編集 */
+    const editButton = document.createElement('button');
+    editButton.textContent = '編集';
+    newTweet.appendChild(editButton);
+
+    editButton.addEventListener('click', (e) => {
+        const input = document.createElement('input');
+        input.placeholder = '編集する本文';
+        newTweet.appendChild(input);
+
+        const editFinish = document.createElement('button');
+        editFinish.textContent = '編集完了';
+        newTweet.appendChild(editFinish);
+
+        editFinish.addEventListener('click', (e) => {
+            const val = input.value;
+            const span = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
+            span.textContent = val;
+
+            input.remove();
+            editFinish.remove();
+        });
+    });
+
     name.value = "";
     tweet.value = "";
 });
