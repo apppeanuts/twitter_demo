@@ -5,7 +5,7 @@ let lisLengthPlusOne;
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    
+
     let name = document.querySelector('#name');
     let tweet = document.querySelector('#tweet');
     lis = document.querySelectorAll('li');
@@ -45,6 +45,15 @@ form.addEventListener('submit', (event) => {
             targetLi.remove();
             
         // lis要素が1個しか無い状態で、かつ削除したliが先頭だった場合
+        } else {
+            targetLi.remove();
+
+        } else if (lis.length !== 1) {
+            const hrZero = targetLi.previousElementSibling.previousElementSibling;
+            const brZero = targetLi.previousElementSibling;
+            hrZero.remove();
+            brZero.remove();
+            targetLi.remove();
         } else {
             targetLi.remove();
         }
